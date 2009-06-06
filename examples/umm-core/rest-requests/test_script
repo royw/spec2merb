@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../rest-client/bin/restclient post http://localhost:4000/commands < scan.rest

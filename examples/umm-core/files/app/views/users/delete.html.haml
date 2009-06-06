@@ -1,0 +1,7 @@
+#show_attributes
+  %h2 Are you sure you want to delete this user?
+  #block
+    = partial :show, :user => @user
+  #actions
+    %ul
+      %li= delete_button rest_resource(@parent, @user), 'Delete'

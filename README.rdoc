@@ -1,7 +1,53 @@
 = spec2merb
 
-Description goes here.
+This is a script that generates a merb project and defines the data models, 
+including relationships, all from an rspec.
+
+The initial purpose was to be an aid in designing the specs for the database
+schema and the web api by successfully generating a project, compiling the
+routes (dynamically when merb is ran), and generating model graphs using
+railroad_xing.  What I found was that it is useful for experimentation
+and early, incremental development.
+
+Spec2merb is a spin-off from the UMM project (the UMM project is an XBMC 
+internal project being developed to provide a unified tool for media meta 
+data management.  The project started in the XBMC forums at: 
+http://xbmc.org/forum/showthread.php?t=50388)
+
+Usage:
+
+1) Install git, ruby, rubygems, merb, datamapper, royw-railroad_xing, and
+   royw-spec2merb per your OS's instructions.
+
+* Gentoo:
+* emerge git ruby rubygems
+* gem install merb-core merb-more dm-core dm-more
+* gem install royw-railroad_xing royw-spec2merb --source http://gems.github.com
+
+2) Create you project directory (mkdir project-name or jeweler project-name or
+   your favorite project creation method)
+
+3) In you project, create a spec file that defines your models and relationships 
+   (see examples/*/spec/* for examples).
+
+4) In a temp directory, use spec2merb to create a directory that contains the
+   merb project:  spec2merb --project my-project --spec /path/to/my-project_spec.rb
+
+5) Examine and test the created project.  Adjust the spec as needed and regenerate
+   the project until you are satisfied.  
+   * Optionally override generated files by placing the desired file in the files/ 
+     directory.  
+   * Optionally insert methods into the generated files by creating a file with
+     the same name in the methods/ directory.  The file is inserted whole into
+     the generated class.
+
+6) Copy the merb project files to your project directory.  You may need to merge
+   some files like the Rakefile. 
+
+Notes:
+
+Linux and Mac only at this time.
 
 == Copyright
 
-Copyright (c) 2009 royw. See LICENSE for details.
+Copyright (c) 2009 Roy Wright. See LICENSE for details.

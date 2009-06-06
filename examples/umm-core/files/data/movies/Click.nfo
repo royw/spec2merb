@@ -1,0 +1,233 @@
+<movie>
+  <rating>6.8</rating>
+  <title>Click</title>
+  <isbn>043396148383</isbn>
+  <actor>
+    <name>Adam Sandler</name>
+    <role>Michael Newman</role>
+  </actor>
+  <actor>
+    <name>Kate Beckinsale</name>
+    <role>Donna Newman</role>
+  </actor>
+  <actor>
+    <name>Christopher Walken</name>
+    <role>Morty</role>
+  </actor>
+  <actor>
+    <name>David Hasselhoff</name>
+    <role>Ammer</role>
+  </actor>
+  <actor>
+    <name>Henry Winkler</name>
+    <role>Ted</role>
+  </actor>
+  <actor>
+    <name>Julie Kavner</name>
+    <role>Trudy</role>
+  </actor>
+  <actor>
+    <name>Sean Astin</name>
+    <role>Bill</role>
+  </actor>
+  <actor>
+    <name>Joseph Castanon</name>
+    <role>Ben at 7 Years Old</role>
+  </actor>
+  <actor>
+    <name>Jonah Hill</name>
+    <role>Ben at 17 Years Old</role>
+  </actor>
+  <actor>
+    <name>Jake Hoffman</name>
+    <role>Ben at 22-30 Years Old</role>
+  </actor>
+  <actor>
+    <name>Tatum McCann</name>
+    <role>Samantha at 5 Years Old</role>
+  </actor>
+  <actor>
+    <name>Lorraine Nicholson</name>
+    <role>Samantha at 14 Years Old</role>
+  </actor>
+  <actor>
+    <name>Katie Cassidy</name>
+    <role>Samantha at 27 Years Old</role>
+  </actor>
+  <actor>
+    <name>Cameron Monaghan</name>
+    <role>Kevin O&apos;Doyle</role>
+  </actor>
+  <actor>
+    <name>Jennifer Coolidge</name>
+    <role>Janine</role>
+  </actor>
+  <actor>
+    <name>Rachel Dratch</name>
+    <role>Alice/Alan</role>
+  </actor>
+  <actor>
+    <name>Sophie Monk</name>
+    <role>Stacy</role>
+  </actor>
+  <actor>
+    <name>Michelle Lombardo</name>
+    <role>Linda</role>
+  </actor>
+  <actor>
+    <name>Jana Kramer</name>
+    <role>Julie</role>
+  </actor>
+  <actor>
+    <name>Nick Swardson</name>
+    <role>Bed, Bath &amp; Beyond Guy</role>
+  </actor>
+  <actor>
+    <name>Sid Ganis</name>
+    <role>Dr. Bergman</role>
+  </actor>
+  <actor>
+    <name>Michael Yama</name>
+    <role>Watsuhita Head Executive</role>
+  </actor>
+  <actor>
+    <name>Mio</name>
+    <role>Watsuhita Executive</role>
+  </actor>
+  <actor>
+    <name>Eiji Inoue</name>
+    <role>Watsuhita Executive</role>
+  </actor>
+  <actor>
+    <name>Toshi Toda</name>
+    <role>Watsuhita Executive</role>
+  </actor>
+  <actor>
+    <name>George K. Eguchi</name>
+    <role>Ancient Executive</role>
+  </actor>
+  <actor>
+    <name>Katheryn Cain</name>
+    <role>Kirsten</role>
+  </actor>
+  <actor>
+    <name>Frank Coraci</name>
+    <role>Male Nurse</role>
+  </actor>
+  <actor>
+    <name>Tim Herlihy</name>
+    <role>Doctor</role>
+  </actor>
+  <actor>
+    <name>Ireesha</name>
+    <role>Jogger</role>
+  </actor>
+  <actor>
+    <name>Emilio Cast</name>
+    <role>Michael at 10 Years Old</role>
+  </actor>
+  <actor>
+    <name>Willy Goldstein</name>
+    <role>Lakeside Camp Boy</role>
+  </actor>
+  <actor>
+    <name>Lily Mo Sheen</name>
+    <role>Lakeside Camp Girl</role>
+  </actor>
+  <actor>
+    <name>Carolyn Hennesy</name>
+    <role>Kathy O&apos;Doyle</role>
+  </actor>
+  <actor>
+    <name>Elena Patten</name>
+    <role>Samantha&apos;s Friend</role>
+  </actor>
+  <actor>
+    <name>Cheyenne Dean</name>
+    <role>Samantha&apos;s Friend</role>
+  </actor>
+  <actor>
+    <name>Elliot Cho</name>
+    <role>Ping Woo</role>
+  </actor>
+  <actor>
+    <name>Alan Au</name>
+    <role>Ping Woo&apos;s Father</role>
+  </actor>
+  <actor>
+    <name>Ryan Keiser</name>
+    <role>Firecracker Teen</role>
+  </actor>
+  <actor>
+    <name>Christopher Gutierrez</name>
+    <role>Firecracker Teen</role>
+  </actor>
+  <actor>
+    <name>Nickole Reyes</name>
+    <role>Firecracker Teen</role>
+  </actor>
+  <actor>
+    <name>Brianna Davis</name>
+    <role>Firecracker Teen</role>
+  </actor>
+  <actor>
+    <name>Robert Jones</name>
+    <role>Firecracker Teen</role>
+  </actor>
+  <actor>
+    <name>Jenae Altschwager</name>
+    <role>Judy</role>
+  </actor>
+  <actor>
+    <name>Manish Goyal</name>
+    <role>Habeeboo Entourage</role>
+  </actor>
+  <actor>
+    <name>Marco Khan</name>
+    <role>Habeeboo Entourage</role>
+  </actor>
+  <actor>
+    <name>Ahmad Jordan</name>
+    <role>Habeeboo Entourage</role>
+  </actor>
+  <actor>
+    <name>Jamil N. Hodaly</name>
+    <role>Habeeboo Entourage</role>
+  </actor>
+  <actor>
+    <name>Alireza Tanbakoochi</name>
+    <role>Habeeboo Entourage</role>
+  </actor>
+  <actor>
+    <name>John Pagano</name>
+    <role>Bandleader</role>
+  </actor>
+  <actor>
+    <name>Dolores O&apos;Riordan</name>
+    <role>Singer</role>
+  </actor>
+  <actor>
+    <name>Sally Insul</name>
+    <role>Aunt Peggy</role>
+  </actor>
+  <actor>
+    <name>Gary Holm</name>
+    <role>Body Double - Fat Michael</role>
+  </actor>
+  <actor>
+    <name>James Earl Jones</name>
+    <role>Commentator</role>
+  </actor>
+  <actor>
+    <name>Rob Schneider</name>
+    <role>Prince Habeeboo</role>
+  </actor>
+  <director>Frank Coraci</director>
+  <mpaa>PG-13</mpaa>
+  <plot>A harried workaholic, Michael Newman (Adam Sandler) doesn&apos;t have time for his wife (Kate Beckinsale) and children, not if he&apos;s to impress his ungrateful boss and earn a well-deserved promotion. So when he meets Morty (Christopher Walken), a loopy sales clerk, he gets him to bypass life&apos;s little distractions with increasingly hysterical results. But as Michael gleefully mutes, skips and scans past his family and his friends, the remote gradually takes over his life and begins to program him, in this fast, funny and out-of-control comedy adventure.</plot>
+  <tagline>What If You Had A Universal Remote... That Controlled Your Universe?</tagline>
+  <id>tt0389860</id>
+  <runtime>108</runtime>
+  <genre>Comedy</genre>
+  <year>2006</year>
+</movie>

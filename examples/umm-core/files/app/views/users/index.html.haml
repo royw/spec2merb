@@ -1,0 +1,10 @@
+#show_attributes
+  #block
+    %ul
+      - @users.each do |user|
+        %li= show_attribute(nil, user.to_s, user)
+    = paginate_helper
+  #actions
+    %ul
+      %li= new_btn rest_resource(@parent, :users, :new)
+

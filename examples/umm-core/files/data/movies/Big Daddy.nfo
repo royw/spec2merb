@@ -1,0 +1,201 @@
+<movie>
+  <rating>6.0</rating>
+  <title>Big Daddy</title>
+  <isbn>043396039223</isbn>
+  <actor>
+    <name>Adam Sandler</name>
+    <role>Sonny</role>
+  </actor>
+  <actor>
+    <name>Joey Lauren Adams</name>
+    <role>Layla</role>
+  </actor>
+  <actor>
+    <name>Jon Stewart</name>
+    <role>Kevin</role>
+  </actor>
+  <actor>
+    <name>Cole Sprouse</name>
+    <role>Julian</role>
+  </actor>
+  <actor>
+    <name>Dylan Sprouse</name>
+    <role>Julian</role>
+  </actor>
+  <actor>
+    <name>Josh Mostel</name>
+    <role>Mr. Brooks</role>
+  </actor>
+  <actor>
+    <name>Leslie Mann</name>
+    <role>Corinne</role>
+  </actor>
+  <actor>
+    <name>Allen Covert</name>
+    <role>Phil</role>
+  </actor>
+  <actor>
+    <name>Rob Schneider</name>
+    <role>Delivery Guy</role>
+  </actor>
+  <actor>
+    <name>Kristy Swanson</name>
+    <role>Vanessa</role>
+  </actor>
+  <actor>
+    <name>Joe Bologna</name>
+    <role>Mr. Koufax</role>
+  </actor>
+  <actor>
+    <name>Peter Dante</name>
+    <role>Tommy</role>
+  </actor>
+  <actor>
+    <name>Jonathan Loughran</name>
+    <role>Mike</role>
+  </actor>
+  <actor>
+    <name>Steve Buscemi</name>
+    <role>Homeless Guy</role>
+  </actor>
+  <actor>
+    <name>Tim Herlihy</name>
+    <role>Singing Kangaroo</role>
+  </actor>
+  <actor>
+    <name>Edmund Lyndeck</name>
+    <role>Old Man</role>
+  </actor>
+  <actor>
+    <name>Larkin Malloy</name>
+    <role>Restaurant Owner</role>
+  </actor>
+  <actor>
+    <name>Samantha Brown</name>
+    <role>Employee</role>
+  </actor>
+  <actor>
+    <name>Neal Huff</name>
+    <role>Customer</role>
+  </actor>
+  <actor>
+    <name>Geoffrey Horne</name>
+    <role>Sid</role>
+  </actor>
+  <actor>
+    <name>Greg Haberny</name>
+    <role>NYU Student</role>
+  </actor>
+  <actor>
+    <name>Jacqueline Titone</name>
+    <role>Waitress</role>
+  </actor>
+  <actor>
+    <name>George Hall</name>
+    <role>Elderly Driver</role>
+  </actor>
+  <actor>
+    <name>Peggy Shay</name>
+    <role>Lady at Tollbooth</role>
+  </actor>
+  <actor>
+    <name>Alfonso Ramírez</name>
+    <role>George</role>
+  </actor>
+  <actor>
+    <name>Salvatore Cavaliere</name>
+    <role>Angry Motorist</role>
+  </actor>
+  <actor>
+    <name>Kelly Dugan</name>
+    <role>Kelly</role>
+  </actor>
+  <actor>
+    <name>Jared Sandler</name>
+    <role>Jared</role>
+  </actor>
+  <actor>
+    <name>Jillian Sandler</name>
+    <role>Jillian</role>
+  </actor>
+  <actor>
+    <name>Helen Lloyd Breed</name>
+    <role>Ms. Foote</role>
+  </actor>
+  <actor>
+    <name>Chloé Hult</name>
+    <role>Schoolteacher</role>
+  </actor>
+  <actor>
+    <name>Carmen DeLavallade</name>
+    <role>Judge</role>
+  </actor>
+  <actor>
+    <name>Steven Brill</name>
+    <role>Castellucci</role>
+  </actor>
+  <actor>
+    <name>Glen Trotiner</name>
+    <role>Bailiff</role>
+  </actor>
+  <actor>
+    <name>Jorge Buccio</name>
+    <role>Himself</role>
+  </actor>
+  <actor>
+    <name>Cat Jagar</name>
+    <role>Receptionist</role>
+  </actor>
+  <actor>
+    <name>Deborah S. Craig</name>
+    <role>Paralegal</role>
+  </actor>
+  <actor>
+    <name>Nicholas Taylor</name>
+    <role>Older Kid</role>
+  </actor>
+  <actor>
+    <name>Cole Hawkins</name>
+    <role>Cole</role>
+  </actor>
+  <actor>
+    <name>Gabriel Jacobs</name>
+    <role>Jeff</role>
+  </actor>
+  <actor>
+    <name>Michael Arcate</name>
+    <role>Broken Arm Kid</role>
+  </actor>
+  <actor>
+    <name>Gaetano Lisi</name>
+    <role>Hot Dog Vendor</role>
+  </actor>
+  <actor>
+    <name>Michael Giarraputo</name>
+    <role>Hoboken Motorist</role>
+  </actor>
+  <actor>
+    <name>Steve Glenn</name>
+    <role>Guy at Party</role>
+  </actor>
+  <actor>
+    <name>Al Cerullo</name>
+    <role>Helicopter Pilot</role>
+  </actor>
+  <actor>
+    <name>Dennis Dugan</name>
+    <role>Reluctant Trick-or-Treat Giver</role>
+  </actor>
+  <actor>
+    <name>Laurie Wallace</name>
+    <role>Hooters Waitress</role>
+  </actor>
+  <director>Dennis Dugan</director>
+  <mpaa>PG-13</mpaa>
+  <plot>Thirty-two-year-old Sonny Koufax (ADAM SANDLER) has spent his whole life avoiding responsibility. But when his girlfriend dumps him for an older man, he’s got to find a way to prove he’s ready to grow up. In a desperate last-ditch effort, Sonny adopts five-year-old Julian (COLE SPROUSE, DYLAN SPROUSE) to impress her. She’s not impressed... and he can’t return the kid. Uh-oh for Sonny!</plot>
+  <tagline>Nature called. Look who answered.</tagline>
+  <id>tt0142342</id>
+  <runtime>93</runtime>
+  <genre>Comedy</genre>
+  <year>1999</year>
+</movie>

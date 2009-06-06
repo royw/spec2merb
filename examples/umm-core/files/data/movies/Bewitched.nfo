@@ -1,0 +1,281 @@
+<movie>
+  <rating>4.9</rating>
+  <title>Bewitched</title>
+  <isbn>043396102101</isbn>
+  <actor>
+    <name>Nicole Kidman</name>
+    <role>Isabel Bigelow/Samantha</role>
+  </actor>
+  <actor>
+    <name>Will Ferrell</name>
+    <role>Jack Wyatt/Darrin</role>
+  </actor>
+  <actor>
+    <name>Shirley MacLaine</name>
+    <role>Iris Smythson/Endora</role>
+  </actor>
+  <actor>
+    <name>Michael Caine</name>
+    <role>Nigel Bigelow</role>
+  </actor>
+  <actor>
+    <name>Jason Schwartzman</name>
+    <role>Ritchie</role>
+  </actor>
+  <actor>
+    <name>Kristin Chenoweth</name>
+    <role>Maria Kelly</role>
+  </actor>
+  <actor>
+    <name>Heather Burns</name>
+    <role>Nina</role>
+  </actor>
+  <actor>
+    <name>Jim Turner</name>
+    <role>Larry</role>
+  </actor>
+  <actor>
+    <name>Stephen Colbert</name>
+    <role>Stu Robison</role>
+  </actor>
+  <actor>
+    <name>David Alan Grier</name>
+    <role>Jim Fields</role>
+  </actor>
+  <actor>
+    <name>Michael Badalucco</name>
+    <role>Joey Props</role>
+  </actor>
+  <actor>
+    <name>Carole Shelley</name>
+    <role>Aunt Clara</role>
+  </actor>
+  <actor>
+    <name>Steve Carell</name>
+    <role>Uncle Arthur</role>
+  </actor>
+  <actor>
+    <name>Katie Finneran</name>
+    <role>Sheila Wyatt</role>
+  </actor>
+  <actor>
+    <name>James Lipton</name>
+    <role>Himself</role>
+  </actor>
+  <actor>
+    <name>Conan O&apos;Brien</name>
+    <role>Himself</role>
+  </actor>
+  <actor>
+    <name>Amy Sedaris</name>
+    <role>Gladys Kravitz</role>
+  </actor>
+  <actor>
+    <name>Richard Kind</name>
+    <role>Abner Kravitz</role>
+  </actor>
+  <actor>
+    <name>Ken Campbell</name>
+    <role>Writer</role>
+  </actor>
+  <actor>
+    <name>P. J. Byrne</name>
+    <role>Writer</role>
+  </actor>
+  <actor>
+    <name>Carole Androsky</name>
+    <role>Realtor</role>
+  </actor>
+  <actor>
+    <name>Annie Mumolo</name>
+    <role>Bed, Bath and Beyond Shopper</role>
+  </actor>
+  <actor>
+    <name>Andrew Friedman</name>
+    <role>Bed, Bath and Beyond Shopper</role>
+  </actor>
+  <actor>
+    <name>Clay Bravo</name>
+    <role>Coffee Shop Waitress</role>
+  </actor>
+  <actor>
+    <name>Heather Freedman</name>
+    <role>Beverly Hills Hotel Hostess</role>
+  </actor>
+  <actor>
+    <name>Jonathan Floyd</name>
+    <role>Cable Man</role>
+  </actor>
+  <actor>
+    <name>Ed McMahon</name>
+    <role>Himself</role>
+  </actor>
+  <actor>
+    <name>Alison MacInnis</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Bridget Brno</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Dana Daurey</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Dorie Barton</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Katharine Carroll</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Jennifer Elise Cox</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Laura Sorenson</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Brittany Paige</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Dawn Ashley Cook</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Julia Schuler</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Abbey McBride</name>
+    <role>Auditioning Actress</role>
+  </actor>
+  <actor>
+    <name>Jennifer Hall</name>
+    <role>Book Soup Cafe Waitress</role>
+  </actor>
+  <actor>
+    <name>Roxanne Beckford</name>
+    <role>Francine</role>
+  </actor>
+  <actor>
+    <name>Hugh Davidson</name>
+    <role>Network Executive</role>
+  </actor>
+  <actor>
+    <name>Joe Zymblosky</name>
+    <role>Randall</role>
+  </actor>
+  <actor>
+    <name>J. J. Sacha</name>
+    <role>Voice-Over Announcer</role>
+  </actor>
+  <actor>
+    <name>Susan Chuang</name>
+    <role>Press Conference Reporter</role>
+  </actor>
+  <actor>
+    <name>Jordan Black</name>
+    <role>Press Conference Photographer</role>
+  </actor>
+  <actor>
+    <name>Mo Rocca</name>
+    <role>E! Reporter</role>
+  </actor>
+  <actor>
+    <name>Jason George</name>
+    <role>E! Anchor</role>
+  </actor>
+  <actor>
+    <name>Wendi McLendon-Covey</name>
+    <role>E! Anchor</role>
+  </actor>
+  <actor>
+    <name>Julie Claire</name>
+    <role>Hillary</role>
+  </actor>
+  <actor>
+    <name>Terry Savage</name>
+    <role>Dinner Party Guest</role>
+  </actor>
+  <actor>
+    <name>Dianne Dreyer</name>
+    <role>Production Staff Assistant</role>
+  </actor>
+  <actor>
+    <name>Kate Walsh</name>
+    <role>Sexy Waitress</role>
+  </actor>
+  <actor>
+    <name>Valerie Azlynn</name>
+    <role>Gorgeous Model</role>
+  </actor>
+  <actor>
+    <name>Jarrad Paul</name>
+    <role>Valet</role>
+  </actor>
+  <actor>
+    <name>Victor Williams</name>
+    <role>Police Officer</role>
+  </actor>
+  <actor>
+    <name>Liesel Staubitz</name>
+    <role>Trick-or-Treater</role>
+  </actor>
+  <actor>
+    <name>Ruby Rose Skotchdopole</name>
+    <role>Trick-or-Treater</role>
+  </actor>
+  <actor>
+    <name>Molly Gordon</name>
+    <role>Trick-or-Treater</role>
+  </actor>
+  <actor>
+    <name>Nick Lachey</name>
+    <role>Vietnam Soldier</role>
+  </actor>
+  <actor>
+    <name>Stephen Cobos</name>
+    <role>Nerdy Kid</role>
+  </actor>
+  <actor>
+    <name>Elizabeth Montgomery</name>
+    <role>Samantha Stephens (archive footage)</role>
+  </actor>
+  <actor>
+    <name>Mina Olivera</name>
+    <role>Dinner Guest</role>
+  </actor>
+  <actor>
+    <name>Dick York</name>
+    <role>Darrin Stephens (archive footage)</role>
+  </actor>
+  <actor>
+    <name>Jennifer Haworth</name>
+    <role>Dinner Party Guest</role>
+  </actor>
+  <actor>
+    <name>Scott Alan Smith</name>
+    <role>Dinner Party Guest</role>
+  </actor>
+  <actor>
+    <name>Larry Sullivan</name>
+    <role>Dinner Party Guest</role>
+  </actor>
+  <director>Nora Ephron</director>
+  <mpaa>PG-13</mpaa>
+  <plot>Oscar®-winner Nicole Kidman (Best Actress in a leading role, &apos;The Hours&apos;, 2002) and wickedly funny Will Ferrell star as actors playing Darrin and Samantha on a remake of the television show &quot;Bewitched&quot; in this cleverly crafty comedy from director Nora Ephron (&apos;Sleepless in Seattle&apos;,&apos; You&apos;ve Got Mail&apos;).
+
+Egomaniacal star Jack Wyatt (Ferrell) casts unknown Isabel (Kidman) as his co-star in order to monopolize the limelight and regain his top spot on Hollywood&apos;s A-list. When Isabel, a real witch, discovers Jack&apos;s self-centered scheme, she conjures a sidesplitting spell the mere mortal will never forget!</plot>
+  <tagline>Be warned. Be ready.</tagline>
+  <id>tt0374536</id>
+  <runtime>102</runtime>
+  <genre>Romance</genre>
+  <genre>Comedy</genre>
+  <genre>Fantasy</genre>
+  <year>2005</year>
+</movie>

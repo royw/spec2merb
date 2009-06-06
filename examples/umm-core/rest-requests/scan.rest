@@ -1,0 +1,5 @@
+<command>
+  <process>Scan</process>
+  <name>testing</name>
+  <parameter>Movies</parameter>
+</command>

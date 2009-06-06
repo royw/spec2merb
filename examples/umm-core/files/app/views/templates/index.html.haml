@@ -1,0 +1,10 @@
+#show_attributes
+  #block
+    %ul
+      - @var_plural.each do |var_singular|
+        %li= show_attribute(nil, var_singular.to_s, var_singular)
+    = paginate_helper
+  #actions
+    %ul
+      %li= new_btn rest_resource(@parent, :var_plural, :new)
+

@@ -1,0 +1,5 @@
+#show_attributes
+  = form_for(@var_singular, :action => rest_resource(@parent, :var_plural)) do
+    #block
+      = partial :form
+    %p= submit "Create"
