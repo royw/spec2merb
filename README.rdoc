@@ -1,0 +1,7 @@
+= spec2merb
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 royw. See LICENSE for details.
