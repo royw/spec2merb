@@ -4,8 +4,8 @@ require File.join(File.dirname(__FILE__), 'spec_helper.rb')
 require 'spec2merb'
 require 'fileutils'
 
-TMPDIR = File.dirname(__FILE__) / '..' / 'tmp'
-mkdir_p TMPDIR
+TMPDIR = File.join(File.dirname(__FILE__), '../tmp')
+FileUtils::mkdir TMPDIR unless File.exist?(TMPDIR)
 
 # "should" are requirements
 # "may" are optional
