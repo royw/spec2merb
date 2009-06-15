@@ -1,0 +1,4 @@
+#!/bin/bash
+
+../../bin/spec2merb --project umm-core-demo --spec spec/umm-core-db-schema_spec.rb
+
