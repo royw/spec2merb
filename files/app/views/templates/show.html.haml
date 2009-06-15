@@ -1,0 +1,7 @@
+#show_attributes
+  #block
+    = partial :show, :var_singular => @var_singular
+  #actions
+    %ul
+      %li= edit_btn rest_resource(@parent, @var_singular, :edit)
+      %li= delete_btn rest_resource(@parent, @var_singular, :delete)

@@ -1,0 +1,4 @@
+%p= edit_text('Login', :login)
+%p= edit_text('Old Password', :old_password) unless @user.old_password.nil?
+%p= edit_text('New Password', :new_password)
+%p= edit_text('Confirm Password', :confirm_password)

@@ -1,0 +1,8 @@
+#show_attributes
+  = form_for(@user, :action => rest_resource(@parent, @user)) do
+    #block
+      = partial :form
+    %p= submit "Update"
+  #actions
+    %ul
+      %li= show_btn rest_resource(@parent, @user)

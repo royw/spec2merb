@@ -1,0 +1,7 @@
+#show_attributes
+  %h2 Are you sure you want to delete this var_singular?
+  #block
+    = partial :show, :var_singular => @var_singular
+  #actions
+    %ul
+      %li= delete_button rest_resource(@parent, @var_singular), 'Delete'
