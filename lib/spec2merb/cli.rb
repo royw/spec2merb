@@ -15,8 +15,8 @@ class CLI
       # parse the command line
       options = setup_parser()
       od = options.parse(arguments)
-
       reinitialize_logger(logger, od["--quiet"], od["--debug"])
+      check_git_options
       
       project_name = od["--project"]
       raise ArgumentError.new('Missing --project name argument') if project_name.blank?
@@ -28,13 +28,17 @@ class CLI
       install = true
       install = false if od["--no_install"]
       
-      dump_yaml = od["--yaml"]
-
+      route_depth = 2
+      unless od['--depth'].blank?
+        route_depth = od['--depth'].to_i
+      end
+      
       skip_execution = false
       %w(--help --version).each {|flag| skip_execution = true if od[flag] }
       unless skip_execution
         # create and execute class instance here
-        app = Spec2Merb.new(project_name)
+        app = Spec2Merb.new(project_name, specfile)
+        app.route_depth = route_depth
         logger.info { "Generating project" }
         app.generate(IO.read(specfile))
         logger.info { "Project generated" }
@@ -43,18 +47,15 @@ class CLI
           app.install 
           logger.info { "Project installed" }
         end
-        if dump_yaml
-          logger.info { "Dumping internal yaml" }
-          File.delete('spec2merb.yaml') if File.exist?('spec2merb.yaml')
-          File.open('spec2merb.yaml', 'w') do |file|
-            file.puts(app.dump)
-          end
-        end
+        app.commit_and_merge
+        logger.info { "You may want to examine lib/tasks/jeweler.rake for accuracy\n" }
+        logger.info { "See http://github.com/guides/import-an-existing-git-repo for exporting to github" }
         logger.info { "Done" }
       end
     rescue ArgumentError => argErr
       logger.error {argErr.to_s}
       logger.error {options.to_s}
+      logger.error {argErr.backtrace.join("\n")}
       exit_code = ExitCode::CRITICAL
     rescue Exception => eMsg
       logger.error {eMsg.to_s}
@@ -63,6 +64,25 @@ class CLI
       exit_code = ExitCode::CRITICAL
     end
     exit_code
+  end
+  
+  def self.check_git_options
+    missing_options = []
+    %w(user.name user.email github.user).each do |name|
+      value = "git config #{name}".strip
+      if value.blank?
+        missing_options << name
+      end
+    end
+    unless missing_options.empty?
+      buf = []
+      buf << "WARNING: You have not set your git #{missing_options.join(", ")} option(s).  Please run:"
+      missing_options.each do |name|
+        buf << "  git config --global #{name} value"
+      end
+      buf << "where value is your information"
+      raise StandardError.new(buf.join("\n"))
+    end
   end
 
   # == Synopsis
@@ -92,10 +112,6 @@ class CLI
         :opt_description => 'Display debug messages'
       },
       {
-        :names           => %w(--yaml -y),
-        :opt_description => 'Dump internal states to spec2merb.yaml for debugging'
-      },
-      {
         :names           => %w(--no_install -n),
         :opt_description => 'Just generate the project, do not prep the database or install the gems'
       },
@@ -115,6 +131,13 @@ class CLI
         :arity           => [1,1],
         :arg_description => 'specfile',
         :opt_description => 'The .spec file that defines the project (required)',
+        :opt_found       => CommandLine::OptionParser::GET_ARGS
+      },
+      {
+        :names           => %w(--depth -r),
+        :arity           => [1,1],
+        :arg_description => 'n',
+        :opt_description => 'The depth of restful routes to generate in config/router.rb (default=2)',
         :opt_found       => CommandLine::OptionParser::GET_ARGS
       },
       {
