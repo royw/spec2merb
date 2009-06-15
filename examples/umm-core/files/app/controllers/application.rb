@@ -1,12 +1,5 @@
-# date fields are supported as follows
-# 1) use global_helpers select_date or select_datetime
-# 2) do not name any properties with a name ending in "_date"
-# 3) the select_date/datetime's base_attr_id should be the property name of a property of type Date or DateTime
-# 4) select_date/datetime will return a hash that is named "#{base_attr_id}_date"
-# 5) the update method will call update_dates which will parse the hash and set the value
-
+# A RESTful route controller with pagination and history navigation support
 class Application < Merb::Controller
-
   #before :ensure_authenticated
   #before :get_user
   @@page_size = 25
@@ -331,7 +324,6 @@ class Application < Merb::Controller
       end
     end
   end
-
 end
 
 
