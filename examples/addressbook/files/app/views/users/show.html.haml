@@ -1,0 +1,7 @@
+#show_attributes
+  #block
+    = partial :show, :user => @user
+  #actions
+    %ul
+      %li= edit_btn rest_resource(@parent, @user, :edit)
+      %li= delete_btn rest_resource(@parent, @user, :delete)

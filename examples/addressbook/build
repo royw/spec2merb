@@ -1,0 +1,3 @@
+#!/bin/bash
+
+../../bin/spec2merb -n --project addressbook --spec spec/addressbook-db_spec.rb

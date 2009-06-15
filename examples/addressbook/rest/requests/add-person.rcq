@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rest-client version="2.3"><request><http-version>1.1</http-version><URL>http://localhost:4000/people.xml</URL><method>POST</method><body content-type="text/xml" charset="UTF-8">&lt;person&gt;
+    &lt;name&gt;Roy Wright&lt;/name&gt;
+    &lt;honorific&gt;Mr.&lt;/honorific&gt;
+&lt;/person&gt;</body></request></rest-client>

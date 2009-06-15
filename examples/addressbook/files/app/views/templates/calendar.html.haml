@@ -1,0 +1,7 @@
+#show_attributes
+  %h3= @calendar.title
+  = show_calendar(@calendar) unless @calendar.events.nil?
+  #actions
+    %ul
+      %li= show_btn(rest_resource(@parent, @resource), 'Show') unless(@parent.nil? && @resource.nil?)
+      %li= new_btn rest_resource(@parent, :appointments, :new), 'New Appointment'
