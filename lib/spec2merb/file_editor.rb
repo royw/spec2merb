@@ -8,6 +8,11 @@ class FileEditor
     File.delete(@newname) if File.exist?(@newname)
   end
 
+  # insert the given lines_to_add at the given location.
+  # the location is the first token in a line, a '-' prefix
+  # means to add the lines before the line with the token, 
+  # otherwise the lines will be added after the last consecutive 
+  # line with the matching toke.
   def insert(location, lines_to_add)
     unless File.exist?(@filename)
       raise Exception.new("The given model file(#{@filename}) does not exist\n")
@@ -21,7 +26,6 @@ class FileEditor
     end
 
     scanning = true
-#    debugger if location == Spec2Merb::AFTER_PROPERTIES
     File.open(@newname, "w") do |f|
       IO.foreach(@filename) do |line|
         if scanning
