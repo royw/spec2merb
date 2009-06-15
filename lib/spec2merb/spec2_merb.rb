@@ -1,4 +1,6 @@
+
 class Spec2Merb
+  attr_accessor :route_depth
 
   BEFORE_CLASS = '-class'
   AFTER_PROPERTIES = 'class|include|is_paginated|property'
@@ -6,129 +8,24 @@ class Spec2Merb
   AFTER_INCLUDES = 'class|include'
   AFTER_REQUIREMENTS = 'class|include|is_paginated|property|belongs_to|has|is'
 
-  def initialize(name)
+  def initialize(name, specfilename)
     @project_name = name
-    @descriptions = []
-    @relationships = []
-    @properties = {}
-    @requirements = {}
-    @routes = {}
-    @synopses = {}
+    @spec_filename = specfilename
+    @route_depth = 2
+    @parser = SpecParser.new
   end
   
-  def dump
-    {
-      :project_name => @project_name, 
-      :descriptions => @descriptions, 
-      :relationships => @relationships, 
-      :properties => @properties, 
-      :requirements => @requirements, 
-      :routes => @routes, 
-      :synopsis => @synopsis
-    }.to_yaml
-  end
-
-  # capture the describe info from the rspec
-  def describe(str,&blk)
-    unless str.nil?
-      if str =~ /^\s*(\S+)\s+Model\s*$/
-        @descriptions << $1
-        @routes[$1] ||= []
-      end
-    end
-    blk.call unless blk.nil?
-  end
-
-  # capture the it info from the rspec
-  def it(str,&blk)
-    description = @descriptions.last
-    through_singular = nil
-    through_plural = nil
-    if str =~ /\[.*\svia\s(\S+)\s*\]/
-      through_singular = $1.snake_case
-      through_plural = through_singular.pluralize
-    end
-    if str =~ /^should have a relationship.*\s(\S+)\s+\((.*)\)\s*\[has\s+(\S+)\s+(\S+)[^\]]*\]/
-      @relationships << {
-        :filename => description,
-        :variable => $1,
-        :comment => $2,
-        :has_relationship => $3,
-        :model => $4,
-        :through => through_plural
-      }
-      @routes[description] << $1
-    elsif str =~ /should have a relationship.*\s(\S+)\s*\[has\s+(\S+)\s+(\S+)[^\]]*\]/
-      @relationships << {
-        :filename => description,
-        :variable => $1,
-        :comment => '',
-        :has_relationship => $2,
-        :model => $3,
-        :through => through_plural
-      }
-      @routes[description] << $1
-    elsif str =~ /^should declare a list.*\s(\S+)\s+\((.*)\)\s*\[list[^\]]*\]/
-      @relationships << {
-        :filename => description,
-        :variable => $1,
-        :comment => $2,
-        :relationship => "is :list, :scope => [:#{$1}_id]",
-        :through => through_plural
-      }
-    elsif str =~ /^should declare a list.*\s(\S+)\s*\[list[^\]]*\]/
-      @relationships << {
-        :filename => description,
-        :variable => $1,
-        :comment => '',
-        :relationship => "is :list, :scope => [:#{$1}_id]",
-        :through => through_plural
-      }
-    elsif str =~ /^should reference.*\s(\S+)\s+\((.*)\)\s*\[belongs_to\s+(\S+)[^\]]*\]/
-      @relationships << {
-        :filename => description,
-        :variable => $1,
-        :comment => $2,
-        :relationship => "belongs_to :#{$1}",
-        :model => $3
-      }
-      @routes[description] << $1
-    elsif str =~ /^should reference.*\s(\S+)\s*\[belongs_to\s+(\S+)[^\]]*\]/
-      @relationships << {
-        :filename => description,
-        :variable => $1,
-        :comment => '',
-        :relationship => "belongs_to :#{$1}",
-        :model => $2
-      }
-      @routes[description] << $1
-    elsif str =~ /should have.*\s(\S+)\s*\(.*?\)\s*\[(\S+)[^\]]*\]/
-      @properties[description] ||= []
-      @properties[description] << "#{$1}:#{$2}"
-    elsif str =~ /should have.*\s(\S+)\s*\[(\S+)[^\]]*\]/
-      @properties[description] ||= []
-      @properties[description] << "#{$1}:#{$2}"
-    else
-      @requirements[description] ||= []
-      @requirements[description] << str
-    end
-  end
-
-  # capture the synopsis info from the rspec
-  def synopsis(*args)
-    description = @descriptions.last
-    @synopses[description] = args
-  end
-
+  # generate the project from the given spec string
   def generate(spec)
-    rm_rf @project_name
-    `merb-gen app #{@project_name}`
+    setup_project(@project_name)
+    add_default_files_to_definition
+    `merb-gen app --force #{@project_name}`
     cd(@project_name) do
-      eval spec
+      @parser.parse(spec)
       gen_descriptions
       gen_relationships
       gen_requirements
-      gen_add_methods
+      # gen_add_methods
       gen_router
       gen_request_specs
       
@@ -136,38 +33,150 @@ class Spec2Merb
       # as defined in the app/controllers/application.rb
       hack_controllers
 
-      # add/overwrite some files
-      mkdir('config/init')
-      mkdir_p('lib/tasks')
-      cp_r(Dir.glob('../files/*'), '.')
-      # gem changed the api in version 1.3.2, I think, at least it is changed
-      # in version 1.3.4, so the following merb hack is necessary for merb
-      # 1.0.11
-      # TODO: this should be generically performed outside of the spec2merb script
-      if Versionomy.parse(`gem --version`) < Versionomy.parse('1.3.4')
-        raise Exception.new 'Please upgrade rubygems to at least 1.3.4 (sudo gem update --system)'
-      end
-      if File.exist?('tasks/merb.thor/gem_ext_4.rb')
-        rm('tasks/merb.thor/gem_ext.rb') if File.exist?('tasks/merb.thor/gem_ext.rb')
-        mv('tasks/merb.thor/gem_ext_4.rb', 'tasks/merb.thor/gem_ext.rb')
-      end
+      add_files_to_project
+      add_spec_to_project
+      gen_app_config_file
+      gen_jeweler_rake
     end
-    
-    def install
-      cd(@project_name) do
-        puts `rake db:automigrate`
-        puts `rake action="all" dev:gen:view`
-        puts `thor merb:gem:install`
-        puts 'rake doc:diagrams'
+  end
+  
+  # setup the project
+  def setup_project(name)
+    unless File.exist?(name)
+      mkdir name
+    end
+    cd(name) do
+      unless File.exist?('.git')
+        puts "Initializing git in #{name}"
+        `echo '*~' > .gitignore`
+        git_initialize
+      end
+      git_checkout_generated_branch
+      puts `git branch`
+      puts 'deleting'
+      # `git checkout generated`
+      Dir.glob('**/*').each do |filename| 
+        # next if filename == 'README'
+        if File.file?(filename)
+          puts "deleting: #{filename}"
+          File.delete(filename)
+        end
+      end
+      Dir.glob('*').each do |filename| 
+        puts "deleting: #{filename}"
+        if File.directory?(filename)
+          rm_rf(filename)
+        end
       end
     end
   end
   
+  # initialize the git repository in the generated project directory
+  def git_initialize
+    g = Git.init
+    g.add('.')
+    g.commit('project created')
+  end
+  
+  # use the generated branch
+  def git_checkout_generated_branch
+    g = Git.open('.')
+    g.branch('generated').checkout
+  end
+  
+  # install the time consuming stuff done after generated
+  def install
+    cd(@project_name) do
+      puts `rake db:automigrate`
+      puts `rake action="all" dev:gen:view`
+      puts `thor merb:gem:install`
+      puts `bin/rake doc:diagrams`
+    end
+  end
+  
+  # commit and merge the generated project
+  def commit_and_merge
+    Dir.glob("**/*~").each do |filename|
+      if File.file?(filename)
+        File.delete(filename)
+      end
+    end
+    cd(@project_name) do
+      now = Time.now.to_s
+      g = Git.open('.')
+      g.add('.')
+      g.commit("generated #{now}")
+      g.branch('master').checkout
+
+      # it's safer to have the user do the rebase so tell them how
+      puts 'If the files on the "generated" branch are ok, then run:'
+      puts
+      puts '  git rebase generated master'
+      puts
+      puts 'to update your master branch with the new generated files.'
+      puts 'Note, if there are merge problems, resolve them then run:'
+      puts
+      puts '  git rebase --continue'
+      puts
+    end
+  end
+
+  # copy files from the Spec2Merb/files/ to the current directory's files/
+  # Does not overwrite
+  def add_default_files_to_definition
+    mkdir_p('files')
+    default_files = File.join(File.dirname(__FILE__), '../../files')
+    files = []
+    chdir(default_files) do
+      files += Dir.glob("**/*")
+    end
+    files.each do |filespec|
+      dest = File.join('files', filespec)
+      unless File.exist?(dest)
+        src = File.join(default_files, filespec)
+        if File.file?(src)
+          destdir = File.dirname(dest)
+          mkdir_p(destdir) unless File.exist?(destdir)
+          # puts "cp(#{src}, #{dest}), destdir => #{destdir}"
+          cp(src, dest)
+        end
+      end
+    end
+  end
+
+  # copy (overwrite) the files in the files/ directory to the generated project
+  def add_files_to_project
+    # add/overwrite some files
+    mkdir('config/init')
+    mkdir_p('lib/tasks')
+    cp_r(Dir.glob('../files/*'), '.')
+    # gem changed the api in version 1.3.2, I think, at least it is changed
+    # in version 1.3.4, so the following merb hack is necessary for merb
+    # 1.0.11
+    # TODO: this should be generically performed outside of the spec2merb script
+    if Versionomy.parse(`gem --version`) < Versionomy.parse('1.3.4')
+      raise Exception.new 'Please upgrade rubygems to at least 1.3.4 (sudo gem update --system)'
+    end
+    if File.exist?('tasks/merb.thor/gem_ext_4.rb')
+      rm('tasks/merb.thor/gem_ext.rb') if File.exist?('tasks/merb.thor/gem_ext.rb')
+      mv('tasks/merb.thor/gem_ext_4.rb', 'tasks/merb.thor/gem_ext.rb')
+    end
+  end
+  
+  # add a copy of the spec used to create the project to
+  # the project's doc directory
+  def add_spec_to_project
+    mkdir_p('doc')
+    cp("../#{@spec_filename}", 'doc')
+  end
+  
+  # The REST controllers are much simpler than the default generated
+  # controllers so replace them
   def hack_controllers
     files = Dir.glob("app/controllers/*.rb")
     files.each do |filename|
       controllername = File.basename(filename, '.*').camel_case
-      next if ['Application', 'Exceptions'].include?(controllername)
+      next if ['Application', 'Exceptions', 'RestController'].include?(controllername)
       File.delete(filename)
       File.open(filename, 'w') do |file|
         file.puts <<END_CONTROLLER
@@ -187,20 +196,22 @@ END_CONTROLLER
     end
   end
 
+  # add some extras to each model file
   def gen_descriptions
-    @descriptions.each do |name|
+    @parser.descriptions.each do |name|
       editor = ModelEditor.new(name.snake_case)
-      editor.generate_resource(@properties[name])
+      editor.generate_resource(@parser.properties[name])
       editor.fixup_properties
       editor.insert(BEFORE_CLASS, model_comments(name))
       editor.insert(AFTER_INCLUDES, '  include AssociationHelper')
       editor.insert(AFTER_INCLUDES, '  is_paginated')
-      editor.insert(AFTER_REQUIREMENTS, def_to_s(@properties[name]))
+      editor.insert(AFTER_REQUIREMENTS, def_to_s(@parser.properties[name]))
     end
   end
   
+  # add the relationships to each model file
   def gen_relationships
-    @relationships.each do |rel|
+    @parser.relationships.each do |rel|
       through_str = ''
       lines = []
       if rel[:has_relationship]
@@ -233,52 +244,87 @@ END_CONTROLLER
     end
   end
 
+  # add any "other" requirements as comments to the models
   def gen_requirements
-    @requirements.each do |name, value|
+    @parser.requirements.each do |name, value|
       editor = ModelEditor.new(name.snake_case)
-      editor.insert(AFTER_RELATIONSHIPS, "  # #{value}")
+      editor.insert(AFTER_RELATIONSHIPS, value.collect{|v| "  # #{v}"}.join("\n"))
     end
   end
   
-  def gen_add_methods
-    Dir.glob("../methods/**/*.rb").each do |filespec|
-      str = IO.read(filespec)
-      filename = $1 if filespec =~ /\/methods\/(.*)/
-      if File.exist?(filename)
-        editor = ModelEditor.new(filename)
-        editor.insert(AFTER_RELATIONSHIPS, str)
-      else
-        Merb.logger.warn {"Can not add methods from '#{filespec}' to '#{filename}' because the file does not exist."}
-      end
-    end
-  end
-
+  # generate the router.rb using RESTful routes for all models
   def gen_router
     filename = 'config/router.rb'
     bakname = 'config/router.rb~'
     File.delete(bakname) if File.exist?(bakname)
-    File.rename(filename, bakname)
+    File.rename(filename, bakname) if File.exist?(filename)
     File.open(filename, "w") do |file|
       file.puts(router_content)
     end
   end
   
+  # add some comments to the generated request specs
   def gen_request_specs
     Dir.glob('spec/requests/*.rb').each do |filename|
       editor = RequestSpecEditor.new(filename)
       editor.add_directions
     end
   end
+  
+  # generate an config/init/app_config.rb file
+  def gen_app_config_file
+    filename = 'config/init/app_config.rb'
+    bakname = 'config/init/app_config.rb~'
+    File.delete(bakname) if File.exist?(bakname)
+    File.rename(filename, bakname) if File.exist?(filename)
+    File.open(filename, "w") do |file|
+      file.puts(app_config_content)
+    end
+  end
+  
+  # the contents of the config/init/app_config.rb file
+  def app_config_content
+    buf = []
+    buf << 'class AppConfig'
+    buf << "  APP_NAME='#{@project_name.camel_case}'"
+    buf << "  APP_CONTROLLERS=%w(#{@parser.descriptions.collect{|model| model.singularize.snake_case.pluralize}.join(' ')})"
+    buf << 'end'
+    buf.join("\n")
+  end
 
   # geneate model comment from synopsis
   def model_comments(name)
     buf = []
-    unless @synopses[name].nil?
-      @synopses[name].each do |line|
+    unless @parser.synopses[name].nil?
+      @parser.synopses[name].each do |line|
         buf << "# #{line.gsub("'", '\'').gsub('"', '\"')}"
       end
     end
     buf
+  end
+  
+  def gen_jeweler_rake
+    g = Git.open('.')
+    github_user = g.config('github.user')
+    user_email = g.config('user.email')
+    user_name = g.config('user.name')
+    File.open('lib/tasks/jeweler.rake', 'w') do |file|
+      file.puts <<END_JEWELER
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "#{@project_name}"
+    gemspec.summary = "TODO"
+    gemspec.email = "#{user_email}"
+    gemspec.homepage = "http://github.com/#{github_user}/#{@project_name}"
+    gemspec.description = "TODO"
+    gemspec.authors = ["#{user_name}"]
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+end
+END_JEWELER
+    end
   end
 
   # generate the to_s method to add to a model class
@@ -346,27 +392,23 @@ END_ROUTER_HEADER
 
   # Change this for your home page to be available at /
   # match("/").to(:controller => "whatever", :action =>"index")
-  match("/").to(:controller => "media_objects", :action =>"index")
 end
 END_ROUTER_FOOTER
-
-  DEPTH_LIMIT = 2
 
   # generate the replacement content for the config/router.rb file.
   def router_content
     buf = []
     buf << ROUTER_HEADER
     indent = 1
-    new_routes = routes_fix_names(@routes)
-    @descriptions.sort.each do |name|
-      buf += find_route(indent, name, new_routes, DEPTH_LIMIT)
+    new_routes = routes_fix_names(@parser.routes)
+    @parser.descriptions.sort.each do |name|
+      buf += find_route(indent, name, new_routes, @route_depth)
     end
     buf << ROUTER_FOOTER
     buf.join("\n")
   end
   
-  # @routes => {'Name' => [names,...]}
-  
+  # remove any unexpected routes
   def routes_fix_names(old_routes)
     new_routes = {}
     old_routes.each do |key,values|
@@ -387,9 +429,7 @@ END_ROUTER_FOOTER
     new_routes
   end
   
-  # @routes => {'Name' => [{'Name' => [{'Name' => [...]}]}]}
-  
-
+  # find the resource routes for the given name (model or controller)
   def find_route(indent, name, routes, depth_limit, footprints=[])
     buf = []
     unless footprints.include?(name)
