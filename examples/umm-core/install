@@ -1,4 +1,13 @@
 #!/bin/bash
 
-sudo gem install merb  merb-pagination dm-core dm-more dm-is-paginated dm-is-list
-sudo gem install royw-railroad_xing xml-simple
+sudo gem install merb  merb-pagination extlib
+sudo gem install dm-core dm-more dm-is-paginated dm-is-list
+sudo gem install xml-simple
+sudo gem install git
+sudo gem install ruby-debug
+sudo gem install versionomy
+sudo gem install jeweler
+sudo gem install log4r
+sudo gem install commandline
+sudo gem install royw-railroad_xing 
+
