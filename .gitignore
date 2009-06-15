@@ -5,3 +5,5 @@ rdoc
 pkg
 examples/addressbook/addressbook
 examples/umm-core/umm-core-demo
+list_test
+tmp
