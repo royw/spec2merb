@@ -3,3 +3,5 @@
 coverage
 rdoc
 pkg
+examples/addressbook/addressbook
+examples/umm-core/umm-core-demo
