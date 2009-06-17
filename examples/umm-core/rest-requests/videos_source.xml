@@ -1,0 +1,8 @@
+<source>
+  <name>Videos</name>
+  <paths>
+    <mount>/var/media/public/data/videos_iso</mount>
+    <publish_url>nfs://royw-gentoo/media/public/data/videos_iso</publish_url>
+    <read_url>nfs://royw-gentoo/media/public/data/videos_iso</read_url>
+  </paths>
+</source>
