@@ -16,42 +16,44 @@ http://xbmc.org/forum/showthread.php?t=50388)
 
 == Installation
 
-1)  Install git on your system (http://git-scm.com/)
-2)  Install ruby on your system (http://www.ruby-lang.org)
-3)  Install rubygems on your system (http://www.ruby-lang.org/en/libraries/)
-4)  Update rubygems (gem update system)
-5)  Install SQLite3 on your system (http://www.sqlite.org/)
-6)  Optionally install ImageMagick (http://www.imagemagick.org) recommended
-7)  Optionally install Curl (http://curl.haxx.se)
-8)  Optionally install RestClient (http://rest-client.googlecode.com)
+  1.  Install git on your system (http://git-scm.com/)
+  2.  Install ruby on your system (http://www.ruby-lang.org)
+  3.  Install rubygems on your system (http://www.ruby-lang.org/en/libraries/)
+  4.  Update rubygems (gem update system)
+  5.  Install SQLite3 on your system (http://www.sqlite.org/)
+  6.  Optionally install ImageMagick (http://www.imagemagick.org) recommended
+  7.  Optionally install Curl (http://curl.haxx.se)
+  8.  Optionally install RestClient (http://rest-client.googlecode.com)
+
 Now you have a choice, either just install the gem with:
   gem install royw-spec2merb
 or clone the repository:
-9)  Change to the directory where you want to keep your repositories 
+
+  9.  Change to the directory where you want to keep your repositories 
 (ex: cd ~/views)
-10) Clone the repository (git clone git://github.com/royw/spec2merb.git)
+  10. Clone the repository (git clone git://github.com/royw/spec2merb.git)
 If you are intended to commit changes to the spec2merb, then fork it
 and clone your fork instead.
-11) Change to the repository directory (cd spec2merb)
-12) Install required gems (refer to or run the install file)
+  11. Change to the repository directory (cd spec2merb)
+  12. Install required gems (refer to or run the install file)
 
 == Usage
 
 For greater detail, please read my blog entry at:
 http://royw.wordpress.com/2009/06/17/specifications-to-generated-merb-project
 
-1) Create you project directory (mkdir project-name or jeweler project-name or
+  1. Create you project directory (mkdir project-name or jeweler project-name or
 your favorite project creation method)
-2) In you project, create a spec file that defines your models and relationships 
+  2. In you project, create a spec file that defines your models and relationships 
 (see examples/*/spec/* for examples).
-3) In a temp directory, use spec2merb to create a directory that contains the
+  3. In a temp directory, use spec2merb to create a directory that contains the
 merb project:  spec2merb --project my-project --spec /path/to/my-project_spec.rb
-4) Examine and test the created project.  Adjust the spec as needed and regenerate
+  4. Examine and test the created project.  Adjust the spec as needed and regenerate
 the project until you are satisfied.  
-* Optionally override generated files by placing the desired file in the files/ 
+    * Optionally override generated files by placing the desired file in the files/ 
 directory.  Note the first time spec2merb is ran on a project, it will install
 default files into the configuration directory.
-5) Copy the merb project files to your project directory.  You may need to merge
+  5. Copy the merb project files to your project directory.  You may need to merge
 some files like the Rakefile. 
 
 == Notes
