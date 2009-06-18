@@ -16,26 +16,26 @@ http://xbmc.org/forum/showthread.php?t=50388)
 
 == Installation
 
-  1.  Install git on your system (http://git-scm.com/)
-  2.  Install ruby on your system (http://www.ruby-lang.org)
-  3.  Install rubygems on your system (http://www.ruby-lang.org/en/libraries/)
-  4.  Update rubygems (gem update system)
-  5.  Install SQLite3 on your system (http://www.sqlite.org/)
-  6.  Optionally install ImageMagick (http://www.imagemagick.org) recommended
-  7.  Optionally install Curl (http://curl.haxx.se)
-  8.  Optionally install RestClient (http://rest-client.googlecode.com)
+1.  Install git on your system (http://git-scm.com/)
+2.  Install ruby on your system (http://www.ruby-lang.org)
+3.  Install rubygems on your system (http://www.ruby-lang.org/en/libraries/)
+4.  Update rubygems (gem update system)
+5.  Install SQLite3 on your system (http://www.sqlite.org/)
+6.  Optionally install ImageMagick (http://www.imagemagick.org) recommended
+7.  Optionally install Curl (http://curl.haxx.se)
+8.  Optionally install RestClient (http://rest-client.googlecode.com)
 
 Now you have a choice, either just install the gem with:
   gem install royw-spec2merb
 or clone the repository:
 
-  9.  Change to the directory where you want to keep your repositories 
-(ex: cd ~/views)
-  10. Clone the repository (git clone git://github.com/royw/spec2merb.git)
-If you are intended to commit changes to the spec2merb, then fork it
-and clone your fork instead.
-  11. Change to the repository directory (cd spec2merb)
-  12. Install required gems (refer to or run the install file)
+9. Change to the directory where you want to keep your repositories 
+   (ex: cd ~/views)
+10. Clone the repository (git clone git://github.com/royw/spec2merb.git)
+    If you are intended to commit changes to the spec2merb, then fork it
+    and clone your fork instead.
+11. Change to the repository directory (cd spec2merb)
+12. Install required gems (refer to or run the install file)
 
 == Usage
 
