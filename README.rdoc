@@ -14,6 +14,9 @@ internal project being developed to provide a unified tool for media meta
 data management.  The project started in the XBMC forums at: 
 http://xbmc.org/forum/showthread.php?t=50388)
 
+For a detailed article, please read my blog entry at:
+http://royw.wordpress.com/2009/06/17/specifications-to-generated-merb-project/
+
 == Installation
 
 1.  Install git on your system (http://git-scm.com/)
