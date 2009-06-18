@@ -42,19 +42,19 @@ or clone the repository:
 For greater detail, please read my blog entry at:
 http://royw.wordpress.com/2009/06/17/specifications-to-generated-merb-project
 
-  1. Create you project directory (mkdir project-name or jeweler project-name or
-your favorite project creation method)
-  2. In you project, create a spec file that defines your models and relationships 
-(see examples/*/spec/* for examples).
-  3. In a temp directory, use spec2merb to create a directory that contains the
-merb project:  spec2merb --project my-project --spec /path/to/my-project_spec.rb
-  4. Examine and test the created project.  Adjust the spec as needed and regenerate
-the project until you are satisfied.  
-    * Optionally override generated files by placing the desired file in the files/ 
-directory.  Note the first time spec2merb is ran on a project, it will install
-default files into the configuration directory.
-  5. Copy the merb project files to your project directory.  You may need to merge
-some files like the Rakefile. 
+1. Create you project directory (mkdir project-name or jeweler project-name or
+   your favorite project creation method)
+2. In you project, create a spec file that defines your models and relationships 
+   (see examples/*/spec/* for examples).
+3. In a temp directory, use spec2merb to create a directory that contains the
+   merb project:  spec2merb --project my-project --spec /path/to/my-project_spec.rb
+4. Examine and test the created project.  Adjust the spec as needed and regenerate
+   the project until you are satisfied.  
+   * Optionally override generated files by placing the desired file in the files/ 
+     directory.  Note the first time spec2merb is ran on a project, it will install
+     default files into the configuration directory.
+5. Copy the merb project files to your project directory.  You may need to merge
+   some files like the Rakefile. 
 
 == Notes
 
