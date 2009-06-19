@@ -12,17 +12,24 @@ class ModelEditor < FileEditor
     super(filename)
   end
   
-  def fixup_properties
+  # properties => [{:variable=>..., :comment=>..., :type=>...},...]
+  def fixup_properties(properties)
     begin
       File.open(@newname, 'w') do |file|
         IO.foreach(@filename) do |line|
-          if line =~ /^\s*property\s+(\:\S+),\s+(\S+)\s*$/
+          if line =~ /^\s*property\s+\:(\S+),\s+(\S+)\s*$/
             name = $1
             sqltype = $2
-            file.puts(line.gsub(sqltype, to_dmtype(sqltype)))
-          else
-            file.puts(line)
+            line = line.gsub(sqltype, to_dmtype(sqltype)).rstrip
+            unless properties.blank?
+              property = properties.select{|prop| prop[:variable] == name}.first
+              # debugger
+              unless property.blank? || property[:comment].blank?
+                line += "  # #{property[:comment]}"
+              end
+            end
           end
+          file.puts(line)
         end
       end
       File.rename(@filename, @bakname)
@@ -32,10 +39,11 @@ class ModelEditor < FileEditor
     end
   end  
   
+  # properties => [{:variable=>..., :comment=>..., :type=>...},...]
   def generate_resource(properties)
     line = "merb-gen resource #{@model_name.snake_case}"
-    unless properties.nil?
-      line += " '#{properties.join(',')}'"
+    unless properties.blank?
+      line += " '#{properties.collect{|prop| prop[:variable] + ':' + prop[:type]}.join(',')}'"
     end
     puts `#{line}`
   end

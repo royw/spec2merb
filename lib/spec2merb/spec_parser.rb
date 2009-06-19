@@ -89,12 +89,22 @@ class SpecParser
         :model => $2
       }
       @routes[description] << $1
-    when /should have.*\s(\S+)\s*\(.*?\)\s*\[(\S+)[^\]]*\]/
+    when /should have.*\s(\S+)\s*\((.*?)\)\s*\[(\S+)[^\]]*\]/
       @properties[description] ||= []
-      @properties[description] << "#{$1}:#{$2}"
+      # @properties[description] << ""#{$1}:#{$3}"
+      @properties[description] << {
+        :variable => $1,
+        :comment => $2,
+        :type => $3
+      }
     when /should have.*\s(\S+)\s*\[(\S+)[^\]]*\]/
       @properties[description] ||= []
-      @properties[description] << "#{$1}:#{$2}"
+      # @properties[description] << "#{$1}:#{$2}"
+      @properties[description] << {
+        :variable => $1,
+        :comment => '',
+        :type => $2
+      }
     else
       @requirements[description] ||= []
       @requirements[description] << str

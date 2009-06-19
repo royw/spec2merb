@@ -201,7 +201,7 @@ END_CONTROLLER
     @parser.descriptions.each do |name|
       editor = ModelEditor.new(name.snake_case)
       editor.generate_resource(@parser.properties[name])
-      editor.fixup_properties
+      editor.fixup_properties(@parser.properties[name])
       editor.insert(BEFORE_CLASS, model_comments(name))
       editor.insert(AFTER_INCLUDES, '  include AssociationHelper')
       editor.insert(AFTER_INCLUDES, '  is_paginated')
@@ -334,9 +334,8 @@ END_JEWELER
       buf << '  def to_s'
       buf << "    buf = []"
       properties.each do |prop|
-        name = prop
-        name = $1 if prop =~ /^(.*)\:/
-        buf << "    buf << \":" + name.to_s + " => \" + send(\"" + name.to_s + "\").inspect"
+        name = prop[:variable].to_s
+        buf << "    buf << \":#{name} => \" + send(\"#{name}\").inspect"
       end
       buf << "    buf.join(\",\")"
       buf << '  end'
